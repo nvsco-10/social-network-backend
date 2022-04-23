@@ -1,9 +1,12 @@
 const Thought = require('../models/Thought');
+const User = require('../models/User');
 
 module.exports = {
 
+
   getThoughts(req, res) {
     Thought.find()
+      .populate('reactions')
       .select('-__v')
       .then((thoughts) => res.json(thoughts))
       .catch((err) => res.status(500).json(err));
@@ -11,6 +14,7 @@ module.exports = {
 
   getSingleThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
+      .populate('reactions')
       .select('-__v')
       .then((thought) =>
         !thought
@@ -23,20 +27,21 @@ module.exports = {
   // create a new thought
   createThought(req, res) {
     Thought.create(req.body)
-      .then(({ _id }) => {
+      .then(thought => {
           User.findOneAndUpdate(
             { _id: req.body.userId },
-            { $addToSet: { thoughts: _id } },
-            { runValidators: true, new: true }
+            { $addToSet: { thoughts: thought._id } },
+            { new: true }
           )
+          .then(user =>
+            !user
+              ? res
+                  .status(404)
+                  .json({ message: 'No user found with that ID :(' })
+              : res.json(user)
+          )
+          .catch((err) => res.status(500).json(err));
       })
-      .then((user) =>
-        !user
-          ? res
-              .status(404)
-              .json({ message: 'No user found with that ID :(' })
-          : res.json(user)
-      )
       .catch((err) => res.status(500).json(err));
   },
 
@@ -101,5 +106,5 @@ module.exports = {
           : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
-  },
+  }
 };

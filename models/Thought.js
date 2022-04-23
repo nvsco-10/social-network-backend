@@ -20,7 +20,7 @@ const reactionSchema = new Schema(
         type: Date,
         default: Date.now,
         // TO DO - get method to format timestamp on query
-        get: formatDate
+        get: (timestamp) => new Date(timestamp).toLocaleString('en-US')
       },
     },
     {
@@ -45,7 +45,7 @@ const thoughtSchema = new Schema(
         type: Date,
         default: Date.now,
         // TO DO - get method to format timestamp on query
-        get: formatDate
+        get: (timestamp) => new Date(timestamp).toLocaleString('en-US')
       },
       username: {
         type: String,
@@ -62,10 +62,15 @@ const thoughtSchema = new Schema(
     }
   );
 
-function formatDate(timestamp) {
-    const date = new Date(timestamp);
-    return date.toLocaleString('en-US')
-}
+// function formatDate(timestamp) {
+//     const date = new Date(timestamp);
+
+//     if(err) {
+//       console.error(err)
+//     } 
+    
+//     return date.toLocaleString('en-US')
+// }
 
 const Thought = model('Thought', thoughtSchema);
 
