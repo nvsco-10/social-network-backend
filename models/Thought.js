@@ -20,7 +20,7 @@ const reactionSchema = new Schema(
         type: Date,
         default: Date.now,
         // TO DO - get method to format timestamp on query
-        get: 
+        get: formatDate
       },
     },
     {
@@ -45,7 +45,7 @@ const thoughtSchema = new Schema(
         type: Date,
         default: Date.now,
         // TO DO - get method to format timestamp on query
-        get:
+        get: formatDate
       },
       username: {
         type: String,
@@ -62,6 +62,11 @@ const thoughtSchema = new Schema(
     }
   );
 
-  const Thought = model('Thought', thoughtSchema);
+function formatDate(timestamp) {
+    const date = new Date(timestamp);
+    return date.toLocaleString('en-US')
+}
 
-  module.exports = Thought;
+const Thought = model('Thought', thoughtSchema);
+
+module.exports = Thought;
