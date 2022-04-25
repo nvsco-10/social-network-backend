@@ -3,7 +3,6 @@ const User = require('../models/User');
 
 module.exports = {
 
-
   getThoughts(req, res) {
     Thought.find()
       .populate('reactions')
@@ -65,7 +64,7 @@ module.exports = {
 
   // delete a thought
   deleteThought(req, res) {
-    thought.findOneAndDelete({ _id: req.params.thoughtId })
+    Thought.findOneAndDelete({ _id: req.params.thoughtId })
       .then((thought) =>
         !thought
           ? res

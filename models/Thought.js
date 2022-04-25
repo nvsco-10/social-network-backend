@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
 
 // Schema to create Thought model
 const reactionSchema = new Schema(
@@ -61,16 +61,6 @@ const thoughtSchema = new Schema(
       id: false,
     }
   );
-
-// function formatDate(timestamp) {
-//     const date = new Date(timestamp);
-
-//     if(err) {
-//       console.error(err)
-//     } 
-    
-//     return date.toLocaleString('en-US')
-// }
 
 const Thought = model('Thought', thoughtSchema);
 
