@@ -19,7 +19,6 @@ const reactionSchema = new Schema(
       createdAt: {
         type: Date,
         default: Date.now,
-        // TO DO - get method to format timestamp on query
         get: (timestamp) => new Date(timestamp).toLocaleString('en-US')
       },
     },
@@ -44,7 +43,6 @@ const thoughtSchema = new Schema(
       createdAt: {
         type: Date,
         default: Date.now,
-        // TO DO - get method to format timestamp on query
         get: (timestamp) => new Date(timestamp).toLocaleString('en-US')
       },
       username: {
