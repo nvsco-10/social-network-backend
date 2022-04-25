@@ -40,6 +40,7 @@ To start using the application:
 <br>
 
 <!-- insert video link -->
+https://user-images.githubusercontent.com/97539424/165167740-4a15c59c-549e-446a-9ec8-54e16c674bb6.mp4
 
 <br>
 <p align="center">
@@ -52,6 +53,7 @@ To start using the application:
 <br>
 
 <!-- insert video link -->
+https://user-images.githubusercontent.com/97539424/165167786-b4235f18-2db5-4850-8eff-7e93f2863cf5.mp4
 
 <br>
 
